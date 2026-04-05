@@ -1,0 +1,18 @@
+{
+    "name": "lecture-1-starter",
+    "version": "1.0.0",
+    "description": "Solana Fundamentals Starter Kit",
+    "main": "index.js",
+    "scripts": {
+        "test-connection": "ts-node src/01-connection.ts",
+        "create-wallet": "ts-node src/02-keypair.ts"
+    },
+    "dependencies": {
+        "@solana/web3.js": "^1.95.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20.0.0",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.3.3"
+    }
+}

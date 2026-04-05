@@ -1,46 +1,123 @@
-# 📖 ЛЕКЦИЯ 3: READING & WRITING ON-CHAIN DATA (TOKENS & NFT)
+# 🎓 ЛЕКЦИЯ 3: READING & WRITING ON-CHAIN DATA
 
-🎯 **Цель:** Научиться работать с SPL токенами, десериализовать данные аккаунтов и извлекать метаданные NFT.
+### 📊 Слайды (Структура презентации)
 
----
+```markdown
+СЛАЙД 1: On-Chain Data Deep Dive
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Beyond Balance: NFTs, Tokens, and Data
 
-## 📊 Презентация (Google Slides Structure)
-1. **Introduction to On-Chain Data**: Understanding that data is just bytes.
-2. **The SPL Token Program**: How tokens work on Solana.
-3. **Associated Token Accounts (ATA)**: Why tokens need a special account.
-4. **Fetching Token Balances**: Using `getTokenAccountsByOwner`.
-5. **Introduction to Metaplex**: Standards for NFTs on Solana.
-6. **MPX SDK**: Reading NFT metadata (URI, Name, Image).
-7. **Decoding Account Data**: Using `Borsh` and `AccountLayout`.
-8. **PDA (Program Derived Addresses)**: Why we need "virtual" accounts.
-9. **Fetching Multiple Accounts**: Using `getMultipleAccountsInfo` (batching).
-10. **Writing Data**: Creating non-transfer instructions.
-11. **Filtering Data**: Using `memcmp` and `dataSize`.
-12. **The "Everything is an Account" mindset**.
+Today's Goal:
+• Learn how Solana stores data
+• Fetch NFT metadata 
+• Understand Token Program
+• Build a Dynamic Gallery
 
----
+СЛАЙД 2: The Data Model
+━━━━━━━━━━━━━━━━━━━━━
+Solana Account {
+  data: Buffer, // The "Meat"
+  owner: ProgramID,
+  executable: boolean,
+  lamports: number
+}
 
-## 💻 Starter Kit (NFT Gallery)
-📦 [lecture-3-nft-gallery](../../starter-kits/lecture-3-starter)
+"Everything is an Account"
 
----
+СЛАЙД 3: Serialization/Deserialization
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Solana stores data as RAW BYTES (Buffer).
 
-## 🔨 Практическое задание 3: "NFT Gallery dApp"
-Создайте приложение, которое подключает кошелек и отображает все NFT пользователя в красивой сетке (Галлерея).
-1. Получите список всех токенов кошелька.
-2. Отфильтруйте NFT (токены с supply=1).
-3. Используйте Metaplex SDK для получения метаданных (URI, Image).
-4. Отобразите карточки NFT с названием и описанием.
+Web2: JSON.parse(str)
+Web3: Schema.decode(buffer) // Using Borsh or Anchor
 
-### Бонус (+20%):
-- Отображение атрибутов NFT.
-- Фильтрация по коллекции.
+Frontend devs: You need a SCHEMA to read data!
 
----
+СЛАЙД 4: The Token Program
+━━━━━━━━━━━━━━━━━━━━━━━
+Mint Account: Defines the token (e.g. USDC)
+Token Account: Holds YOUR balance of that token
 
-## 📝 Тест (Quiz)
-1. Что такое ATA? (Associated Token Account)
-2. Какой стандарт используется для NFT? (Metaplex)
-3. Что такое PDA? (Account without private key, derived from seeds)
-4. Зачем нужен Borsh? (Binary Serialization/Deserialization)
-...
+Math: 
+User Wallet -> holds multiple Token Accounts
+Token Account -> belongs to ONE Mint
+
+СЛАЙД 5: Introduction to Metaplex
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Problem: Solana tokens don't have "Images" inside.
+Solution: Metaplex Standard.
+
+Token + Metadata Account (URI) = NFT
+
+СЛАЙД 6: The Metaplex JS SDK
+━━━━━━━━━━━━━━━━━━━━━━━━━
+npm install @metaplex-foundation/js
+
+const metaplex = Metaplex.make(connection)
+  .use(walletAdapterIdentity(wallet));
+
+const nft = await metaplex.nfts().findByMint({ mintAddress });
+
+СЛАЙД 7: Fetching All User NFTs
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const nfts = await metaplex.nfts()
+  .findAllByOwner({ owner: publicKey });
+
+// Return list of metadata objects
+// includes: name, symbol, uri
+
+СЛАЙД 8: PDAs (Program Derived Addresses)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Addresses without a private key.
+Controlled by programs.
+
+Use case: Metadata accounts, Vaults.
+Frontend logic: `PublicKey.findProgramAddressSync(...)`
+
+СЛАЙД 9: Reading SPL Tokens (web3.js)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+import { 
+  getOrCreateAssociatedTokenAccount 
+} from '@solana/spl-token';
+
+Fetch balance, transfer tokens, close accounts.
+
+СЛАЙД 10: Performance: getProgramAccounts
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Fetch MANY accounts in one call.
+Warning: HEAVY query. 
+Frontend tip: Use filters (memcmp) to only get what you need.
+
+СЛАЙД 11: Real-time UI: onAccountChange
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+connection.onAccountChange(
+  publicKey,
+  (accountInfo) => {
+    // Update balance/data instantly 
+    // without refreshing!
+  }
+);
+
+СЛАЙД 12: Building the NFT Gallery
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Connect Wallet
+2. Metaplex.findAllByOwner
+3. Map results to Card components
+4. Lazy load images from URI (IPFS/Arweave)
+
+Let's open the starter kit! 🚀
+```
+
+### 💻 Стартовый набор кода
+Находится в `starter-kits/lecture-3-starter`
+
+### 🔨 Практическое задание
+**"NFT Museum dApp"**
+1. ✅ Загрузка всех NFT пользователя
+2. ✅ Отображение картинок и имен
+3. ✅ Фильтр по коллекции
+4. ✅ Кнопка "View on Explorer" для каждого ассета
+5. ✅ Кэширование данных (localStorage)
+
+### 📝 Тест
+Находится в `quizzes/quiz-3.md`

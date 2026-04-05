@@ -1,46 +1,106 @@
-# 📖 ЛЕКЦИЯ 4: PRODUCTION-READY dAPP PATTERNS
+# 🎓 ЛЕКЦИЯ 4: PRODUCTION-READY dAPP PATTERNS
 
-🎯 **Цель:** Изучить профессиональные паттерны масштабируемости, безопасности и оптимизации для работы на Mainnet.
+### 📊 Слайды (Структура презентации)
 
----
+```markdown
+СЛАЙД 1: Production Engineering
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+From Sandbox to Mainnet Scaling
 
-## 📊 Презентация (Google Slides Structure)
-1. **The Production Mindset**: Why devnet !== mainnet.
-2. **RPC Performance**: DAS (Digital Asset Standard), Webhooks vs Polling.
-3. **Optimizing RPC calls**: Using Helius, GetProgramAccounts best practices.
-4. **Transaction Simulation**: Preventing user errors and bad signatures.
-5. **Security & User Protection**: Validating program IDs, preventing slippage.
-6. **Error Recovery**: Automatic retries, error boundaries.
-7. **Simulation vs Actual Execution**: Cost computation units (CU).
-8. **Managing Private Keys Safely**: Cold storage, browser storage risks.
-9. **Analytics & Monitoring**: Track your dApp performance.
-10. **State Management**: Using Redux or Zustand with blockchain data.
-11. **Caching patterns**: React Query for on-chain fetching.
-12. **Scaling strategies**: Moving to custom indexers (Solana Indexer).
+Today's Goal:
+• Simulation UX
+• Priority Fees & Congestion
+• RPC Batching
+• Transaction Life Cycle Management
 
----
+СЛАЙД 2: The Simulation First approach
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Why simulate?
+❌ User signs -> tx fails -> fees lost -> User SAD 😿
+✅ App simulates -> catches error -> shows message -> User HAPPY 😺
 
-## 💻 Starter Kit (Production Template)
-📦 [lecture-4-production](../../starter-kits/lecture-4-starter)
+How: `connection.simulateTransaction(tx)`
 
----
+СЛАЙД 3: Priority Fees (Solana Congestion)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Network is busy? Skip the line with SOL.
 
-## 🔨 Практическое задание 4: "Full-Stack dApp Final"
-Интегрируйте все 4 лекции в финальный проект:
-1. Реализуйте "Dashboard" с полным обзором кошелька (balance, tokens, nfts).
-2. Оптимизируйте запросы через DAS API или Helius.
-3. Добавьте симуляцию транзакции перед подтверждением (`simulateTransaction`).
-4. Настройте обработку ошибок для всех критических путей (`rejection`, `timeout`).
+Solana: No "Gas Market" like ETH, but priority is real.
+Logic: ComputeBudgetProgram.setComputeUnitPrice(...)
 
-### Бонус (+20%):
-- Добавление "Recent Activities" в реальном времени через Webhooks.
-- Ссылка на GitHub Action для CI/CD.
+СЛАЙД 4: Compute Budget in dApps
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Solana transactions are limited by CU (Compute Units).
+Default: 200k CU.
+Tip: If your program is heavy -> Request more CU!
 
----
+СЛАЙД 5: Building a Resilient RPC Layer
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+api.mainnet-beta.solana.com ⚠️ RATE LIMITED
+Frontends in production MUST use:
+• Helius (DAS API + webhooks)
+• QuickNode
+• Alchemy
 
-## 📝 Тест (Quiz)
-1. Что такое `simulateTransaction`? (Dry run)
-2. Зачем нужны DAS API? (Efficient querying)
-3. Что такое CU (Compute Units)? (Gas equivalent in Solana)
-4. Преимущества webhooks перед polling? (Efficiency, real-time)
-...
+СЛАЙД 6: Introduction to DAS API
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+The "Digital Asset Standard".
+One API to rule them all: NFTs, Fungibles, Hybrids.
+Fast, cached, and searchable.
+
+СЛАЙД 7: Transaction Monitoring UI
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+States to show the user:
+1. "Simulating..."
+2. "Waiting for user approval..."
+3. "Broadcasting to network..."
+4. "Searching for confirmation (0/3)..."
+5. "Confirmed! Finalizing..."
+
+СЛАЙД 8: Re-sending Transactions
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Congested network? Transaction might time out.
+
+Strategy: "Polite Spammer"
+Send every 2-3 seconds until confirmed.
+
+СЛАЙД 9: RPC Batching & getMultipleAccounts
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Don't make 10 HTTP requests.
+Make ONE: `getMultipleAccounts([pub1, pub2, ...])`
+
+Saves time (RTT) and reduces Node load.
+
+СЛАЙД 10: Error Diagnostics
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+Slippage? Insufficient SOL?
+Break down standard Solana error codes for users.
+
+Example: "Slippage too high" is better than "Instruction Error 0x1".
+
+СЛАЙД 11: Deployment Hygiene
+━━━━━━━━━━━━━━━━━━━━━━━━━
+• devnet first -> Testnet -> mainnet
+• Environment variables (.env) for RPC URLs
+• Monitoring tools (Sentry for frontend errors)
+
+СЛАЙД 12: You are ready!
+━━━━━━━━━━━━━━━━━━━━━━━
+The hackathon starts now.
+Use the production-starter-kit to build fast.
+
+Go build something amazing! 🚀🏆
+```
+
+### 💻 Стартовый набор кода
+Находится в `starter-kits/lecture-4-starter`
+
+### 🔨 Практическое задание
+**"Production Trading Dashboard"**
+1. ✅ Интеграция Priority Fees (ползунок в интерфейсе)
+2. ✅ Simulation-first UX (показ логов программы при ошибке)
+3. ✅ Использование Helius DAS API для загрузки ассетов
+4. ✅ Показ прогресс-бара по мере подтверждения транзакции
+
+### 📝 Тест
+Находится в `quizzes/quiz-4.md`

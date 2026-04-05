@@ -11,54 +11,42 @@
 Лекция 4: Production-Ready dApp Patterns (2 часа)
 
 Каждая лекция включает:
-├── 📊 Презентация (Google Slides)
-├── 💻 Стартовый набор кода (GitHub)
+├── 📊 Презентация (Структура слайдов)
+├── 💻 Стартовый набор кода (Starter Kit)
 ├── 🔨 Практическое задание
 └── 📝 Тест (10 вопросов)
 ```
 
 ---
 
-## 📖 ЛЕКЦИЯ 1: SOLANA FUNDAMENTALS FOR FRONTEND DEVELOPERS
+## 📖 ЛЕКЦИЯ 1: FUNDAMENTALS
+- **� Слайды**: Находятся в `lectures/lecture-1/README.md`
+- **💻 Код**: `starter-kits/lecture-1-starter`
+- **� Тест**: `quizzes/quiz-1.md`
+- **🔨 Задание**: `assignments/assignment-1.md`
 
-### 💻 Стартовый набор кода
-Находится в `starter-kits/lecture-1-starter`
+## 📖 ЛЕКЦИЯ 2: WALLET INTEGRATION
+- **� Слайды**: Находятся в `lectures/lecture-2/README.md`
+- **💻 Код**: `starter-kits/lecture-2-starter`
+- **� Тест**: `quizzes/quiz-2.md`
+- **🔨 Задание**: `assignments/assignment-2.md`
 
-### 🔨 Практическое задание
-**"Solana Wallet Manager CLI"**
-Создайте консольное приложение, которое:
-1. ✅ Создаёт новый кошелёк
-2. ✅ Сохраняет его в файл
-3. ✅ Показывает баланс
-4. ✅ Запрашивает airdrop (если баланс < 1 SOL)
-5. ✅ Отправляет SOL на указанный адрес
+## 📖 ЛЕКЦИЯ 3: ON-CHAIN DATA
+- **� Слайды**: Находятся в `lectures/lecture-3/README.md`
+- **💻 Код**: `starter-kits/lecture-3-starter`
+- **📝 Тест**: `quizzes/quiz-3.md`
+- **🔨 Задание**: `assignments/assignment-3.md`
 
----
-
-## � ЛЕКЦИЯ 2: WALLET INTEGRATION & TRANSACTION SIGNING
-
-### 💻 Стартовый набор кода
-Находится в `starter-kits/lecture-2-starter`
-
-### 🔨 Практическое задание
-**"Portfolio Tracker dApp"**
-Создайте React приложение с wallet integration.
-
----
-
-## 📖 ЛЕКЦИЯ 3: READING & WRITING ON-CHAIN DATA
-
-### 💻 Стартовый набор кода
-Находится в `starter-kits/lecture-3-starter`
-
----
-
-## 📖 ЛЕКЦИЯ 4: PRODUCTION-READY DAPP PATTERNS
-
-### 💻 Стартовый набор кода
-Находится в `starter-kits/lecture-4-starter`
+## 📖 ЛЕКЦИЯ 4: PRODUCTION PATTERNS
+- **� Слайды**: Находятся в `lectures/lecture-4/README.md`
+- **💻 Код**: `starter-kits/lecture-4-starter`
+- **📝 Тест**: `quizzes/quiz-4.md`
+- **🔨 Задание**: `assignments/assignment-4.md`
 
 ---
 
 ## 📦 ОБЩИЙ GitHub РЕПОЗИТОРИЙ
 👉 [EgorovDimaIT/Solana-Frontend-Development-Educational-Module](https://github.com/EgorovDimaIT/Solana-Frontend-Development-Educational-Module)
+
+## 📞 ПОДДЕРЖКА
+Built by **Egorov Dima** for **Superteam Ukraine x Colosseum Hackathon**.

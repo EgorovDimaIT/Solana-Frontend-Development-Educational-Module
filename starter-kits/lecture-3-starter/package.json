@@ -1,0 +1,27 @@
+{
+    "name": "lecture-3-starter",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev -p 3006",
+        "build": "next build",
+        "start": "next start"
+    },
+    "dependencies": {
+        "@metaplex-foundation/js": "^0.20.1",
+        "@solana/wallet-adapter-react": "^0.15.35",
+        "@solana/wallet-adapter-react-ui": "^0.9.35",
+        "@solana/wallet-adapter-wallets": "^0.19.32",
+        "@solana/web3.js": "^1.95.0",
+        "next": "14.2.14",
+        "react": "^18",
+        "react-dom": "^18",
+        "lucide-react": "^0.300.0"
+    },
+    "devDependencies": {
+        "typescript": "^5",
+        "tailwindcss": "^3.4.1",
+        "postcss": "^8",
+        "autoprefixer": "^10.4.20"
+    }
+}

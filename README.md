@@ -1,46 +1,64 @@
 # 🎓 SOLANA FRONTEND BOOTCAMP — ПОЛНЫЙ ОБРАЗОВАТЕЛЬНЫЙ МОДУЛЬ
 
-## About Superteam Ukraine
-Superteam Ukraine is focused on growing the Solana ecosystem in Ukraine. We connect the best Ukrainian talent with opportunities in the Solana and Web3 ecosystem, helping them find jobs, get grants, and launch their projects.
-
-## Mission
-Develop a comprehensive educational module for Frontend Developers to master building on Solana. The goal is to provide developers with the tools and knowledge to transition from Web2 UI/UX to building high-performance, production-ready decentralized applications (dApps) for the Colosseum Hackathon.
-
 ## 📚 СТРУКТУРА КУРСА
-🎯 **Цель:** За 4 лекции превратить Web2 фронтенд-разработчика в Solana dApp developer
 
-| Лекция | Тема | Цель |
-|--------|------|------|
-| 1 | Solana Fundamentals | Основы аккаунтов, транзакций и подключение через @solana/web3.js |
-| 2 | Wallet Integration | Интеграция кошельков (Phantom, Solflare) и UX подписания |
-| 3 | Reading & Writing On-Chain Data | Работа с токенами, NFT и десериализация данных |
-| 4 | Production-Ready dApp Patterns | Оптимизация RPC, безопасность и паттерны масштабируемости |
+```
+🎯 Цель: За 4 лекции превратить Web2 фронтенд-разработчика в Solana dApp developer
+
+Лекция 1: Solana Fundamentals for Frontend Developers (2 часа)
+Лекция 2: Wallet Integration & Transaction Signing (2 часа)
+Лекция 3: Reading & Writing On-Chain Data (2 часа)
+Лекция 4: Production-Ready dApp Patterns (2 часа)
 
 Каждая лекция включает:
-- 📊 **Презентация (Google Slides / Canva format)**
-- 💻 **Стартовый набор кода (GitHub)**
-- 🔨 **Практическое задание**
-- 📝 **Тест (Quiz)**
+├── 📊 Презентация (Google Slides)
+├── 💻 Стартовый набор кода (GitHub)
+├── 🔨 Практическое задание
+└── 📝 Тест (10 вопросов)
+```
 
 ---
 
-## 🏆 Reward Structure
-- **1st Place:** 2500 USDG
+## 📖 ЛЕКЦИЯ 1: SOLANA FUNDAMENTALS FOR FRONTEND DEVELOPERS
 
-## 🏁 Judging Criteria
-- **Technical Accuracy:** Correctness of code examples and concepts.
-- **Usability:** Speed of "Zero to Hero" for developers.
-- **Quality of Content:** Clarity of slides and depth of lectures.
-- **Solana Context:** UX challenges (speed, RPC limits).
+### 💻 Стартовый набор кода
+Находится в `starter-kits/lecture-1-starter`
+
+### 🔨 Практическое задание
+**"Solana Wallet Manager CLI"**
+Создайте консольное приложение, которое:
+1. ✅ Создаёт новый кошелёк
+2. ✅ Сохраняет его в файл
+3. ✅ Показывает баланс
+4. ✅ Запрашивает airdrop (если баланс < 1 SOL)
+5. ✅ Отправляет SOL на указанный адрес
 
 ---
 
-## 🚀 Navigation
-- [Lecture 1: Solana Fundamentals](./lectures/lecture-1/README.md)
-- [Lecture 2: Wallet Integration](./lectures/lecture-2/README.md)
-- [Lecture 3: Reading & Writing On-Chain Data](./lectures/lecture-3/README.md)
-- [Lecture 4: Production-Ready Patterns](./lectures/lecture-4/README.md)
-- [Developer Toolkit & Starter Kits](./starter-kits/README.md)
-- [Cheatsheet & Resources](./resources/README.md)
+## � ЛЕКЦИЯ 2: WALLET INTEGRATION & TRANSACTION SIGNING
 
-Built with 💙 by Superteam Ukraine
+### 💻 Стартовый набор кода
+Находится в `starter-kits/lecture-2-starter`
+
+### 🔨 Практическое задание
+**"Portfolio Tracker dApp"**
+Создайте React приложение с wallet integration.
+
+---
+
+## 📖 ЛЕКЦИЯ 3: READING & WRITING ON-CHAIN DATA
+
+### 💻 Стартовый набор кода
+Находится в `starter-kits/lecture-3-starter`
+
+---
+
+## 📖 ЛЕКЦИЯ 4: PRODUCTION-READY DAPP PATTERNS
+
+### 💻 Стартовый набор кода
+Находится в `starter-kits/lecture-4-starter`
+
+---
+
+## 📦 ОБЩИЙ GitHub РЕПОЗИТОРИЙ
+👉 [EgorovDimaIT/Solana-Frontend-Development-Educational-Module](https://github.com/EgorovDimaIT/Solana-Frontend-Development-Educational-Module)

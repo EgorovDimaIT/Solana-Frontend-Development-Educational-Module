@@ -3,6 +3,44 @@
 @tailwind utilities;
 
 body {
+  color: #f8fafc;
+  background: #020617;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(99, 102, 241, 0.3);
   color: white;
-  background: #111;
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/[0.03] backdrop-blur-2xl border border-white/[0.1] shadow-2xl;
+  }
+
+  .glass-card-hover {
+    @apply hover:bg-white/[0.06] hover:border-white/[0.2] transition-all duration-500;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+  }
+
+  .premium-gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-400;
+  }
+
+  .glow-blue {
+    @apply bg-blue-500/10 blur-[120px] rounded-full;
+  }
+
+  .glow-purple {
+    @apply bg-purple-500/10 blur-[120px] rounded-full;
+  }
+
+  .glow-emerald {
+    @apply bg-emerald-500/10 blur-[120px] rounded-full;
+  }
 }
